@@ -55,65 +55,114 @@ class BasicsPage extends StatelessWidget{
           child: Center(
             child: Card(
               elevation: 10,
-              margin: const EdgeInsets.all(20),
+              margin: const EdgeInsets.all(10),
               child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  //next line will set the size of the content on the screen, just need to change min to max or other option
-                  mainAxisSize: MainAxisSize.min,
-                  //next line does the same as a align-items
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //next line does the same as justify-content
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(10),
-                    ),
-                    const Text("Test column"),
-                    Container(
-                      color: Colors.teal,
-                      padding: const EdgeInsets.all(5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        mainAxisSize: MainAxisSize.max,
+                padding: const EdgeInsets.all(3),
+                child: SingleChildScrollView(
+                  //scrollDirection: Axis.vertical,
+                  child: Column(
+                    //next line will set the size of the content on the screen, just need to change min to max or other option
+                    mainAxisSize: MainAxisSize.min,
+                    //next line does the same as a align-items
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //next line does the same as justify-content
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text("Test column"),
+                      Stack(
+                        alignment: Alignment.topCenter,
                         children: [
-                          // next line is to create a avatar ciscle with image
-                          const CircleAvatar(
-                            radius: 40,
-                            backgroundColor: Colors.blue,
-                            foregroundImage: AssetImage("images/turtle.jpg"),
-                            //same for image link using NetworkImage
+                          fromAsset(height: 200, width: size.width),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 150),
+                            child: profilePicture(),
                           ),
-                          //fromAsset(height: 80, width: 80 ),
-                          // the Expanded was used to align the text in the center, very used command
-                          Expanded(
-                              child: simpleText("Ormaes training"),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Icon(
+                                  Icons.favorite,
+                                  color: Colors.white,
+                              ),
+                              Icon(
+                                  Icons.linked_camera,
+                                  color: Colors.white,
+                              ),
+                              Text("Testing another Element"),
+                            ],
                           ),
                         ],
                       ),
-                    ),
-
-                    const Padding(
-                      padding: EdgeInsets.all(10),
-                    ),
-                    fromNetwork(),
-                    const Padding(
-                      padding: EdgeInsets.all(10),
-                    ),
-                    spanDemo(),
-                    const Padding(
-                      padding: EdgeInsets.all(10),
-                    ),
-                  ],
+                      const Divider(
+                        color: Colors.grey,
+                        height: 50,
+                        thickness: 1,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(20),
+                        height: 100,
+                        width: size.width,
+                        //We can't use color if we are already using DECORATION, for that the color must be created inside of DECORATION
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("images/turtle.jpg"),
+                            fit: BoxFit.cover
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.yellow,
+                              offset: Offset(2, 2),
+                              blurRadius: 2,
+                              spreadRadius: 1,
+                            ),
+                          ],
+                          //shape: BoxShape.circle,
+                            //Next line creates a border radius
+                          borderRadius: BorderRadius.all(Radius.circular(15))
+                        ),
+                        child: const Text("CONTAINER"),
+                      ),
+                      Container(
+                        color: Colors.teal,
+                        padding: const EdgeInsets.all(5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            // next line is to create a avatar ciscle with image
+                            profilePicture(),
+                            //fromAsset(height: 80, width: 80 ),
+                            // the Expanded was used to align the text in the center, very used command
+                            Expanded(
+                              child: simpleText("Ormaes training"),
+                            ),
+                          ],
+                        ),
+                      ),
+                      fromNetwork(),
+                      spanDemo(),
+                      fromNetwork(),
+                    ],
+                  ),
                 ),
+
               ),
 /*              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),*/
               ),
-
             ),
           ),
       );
+  }
+
+
+  CircleAvatar profilePicture(){
+    return const CircleAvatar(
+      radius: 40,
+      backgroundColor: Colors.blue,
+      foregroundImage: AssetImage("images/turtle.jpg"),
+      //same for image link using NetworkImage("link here")
+    );
   }
 
   Text simpleText(String text){
