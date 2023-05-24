@@ -83,11 +83,10 @@ class FirstAppFromZero extends StatelessWidget {
                           child: Text(
                             "Hello this is the description of the user only for a test...",
                             style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.italic,
-                              color: Colors.black45
-                            ),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.italic,
+                                color: Colors.black45),
                           ),
                         ),
                       ),
@@ -98,12 +97,52 @@ class FirstAppFromZero extends StatelessWidget {
               ),
             ),
             Row(
+              /*-------------------------------------------------------------------------------------------------------*/
+              //CREATING A BUTTON
+              /*-------------------------------------------------------------------------------------------------------*/
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Button(
-                    child: Text("Button"),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(250, 40),
+                    ),
+                    onPressed: () {},
+                    child: const Text("BUTTON"),
+                  ),
+                ),
+                /*-------------------------------------------------------------------------------------------------------*/
+                //BUTTON WITH ICON
+                /*-------------------------------------------------------------------------------------------------------*/
+                Padding(
+                  padding: const EdgeInsets.only(left: 1, right: 20),
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(1, 40),
+                    ),
+                    onPressed: () {},
+                    icon: const Icon(Icons.edit),
+                    label: const Text(""),
+                  ),
                 ),
               ],
-            )
+
+            ),
+            /*-------------------------------------------------------------------------------------------------------*/
+            //CREATING CARD FROM ZERO
+            /*-------------------------------------------------------------------------------------------------------*/
+            Row(
+              children: [
+                Column(
+                 children: [
+                   Container(
+
+                   )
+                 ],
+                ),
+              ],
+            ),
           ],
         ),
       ),
