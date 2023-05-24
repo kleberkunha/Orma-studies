@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class FirstAppFromZero extends StatelessWidget{
+class FirstAppFromZero extends StatelessWidget {
   const FirstAppFromZero({super.key});
 
   @override
@@ -30,64 +30,100 @@ class FirstAppFromZero extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         title: const Align(
-        alignment: Alignment(-0.20, 0),
-        child: Text("My first app"),
+          alignment: Alignment(-0.20, 0),
+          child: Text("My first app"),
         ),
       ),
-
-
       body: Container(
         height: size.height,
         width: size.width,
-        color : Colors.white,
+        color: Colors.white,
+        /*-------------------------------------------------------------------------------------------------------*/
         child: Column(
           children: [
-            backGroundIMG(height: size.height, width: size.width),
-            profilePicture(),
-          ],
-        ),
-        /*child: Stack(
-              children: <Widget> [
-                ClipRect(
-                  child: backGroundIMG(height: size.height, width: size.width),
-                ),
-                 Align(
-                  alignment: Alignment.bottomCenter,
+            Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                backGroundIMG(width: size.width),
+                Padding(
+                  padding: const EdgeInsets.only(top: 180),
                   child: profilePicture(),
                 ),
-
               ],
-            ),*/
+            ),
+            /*-------------------------------------------------------------------------------------------------------*/
+            SizedBox(
+              width: size.width,
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: size.width,
+                    child: const Center(
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text(
+                            "THIS IS THE NAME",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  /*-------------------------------------------------------------------------------------------------------*/
+                  SizedBox(
+                    width: size.width,
+                    child: const Center(
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Text(
+                            "Hello this is the description of the user only for a test...",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.italic,
+                              color: Colors.black45
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+                /*-------------------------------------------------------------------------------------------------------*/
+              ),
+            ),
+            Row(
+              children: [
+                Button(
+                    child: Text("Button"),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
 }
 
-
-/*CircleAvatar profilePicture(){
-  return const CircleAvatar(
-    radius: 40,
-    backgroundColor: Colors.blue,
-    foregroundImage: AssetImage("images/turtle.jpg"),
-    //same for image link using NetworkImage("link here")
-  );
-}*/
-
-
-Image backGroundIMG({required double height, required double width}){
+Image backGroundIMG({required double width}) {
   return Image.asset(
     "images/camp.jpeg",
     fit: BoxFit.contain,
-    height: height,
     width: width,
     alignment: Alignment.topCenter,
   );
 }
 
-CircleAvatar profilePicture(){
-  return  CircleAvatar(
+CircleAvatar profilePicture() {
+  return CircleAvatar(
     radius: 70,
-    backgroundImage: AssetImage("images/profile.jpg"),
+    backgroundImage: const AssetImage("images/profile.jpg"),
     child: Align(
       alignment: Alignment.bottomCenter,
       child: Container(
