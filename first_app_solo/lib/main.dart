@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -158,36 +156,15 @@ class FirstAppFromZero extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: const [
-                  Icon(Icons.home),
-                  Text("Strasbourg, France"),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: const [
-                  Icon(Icons.work),
-                  Text("Strasbourg, France"),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: const [
-                  Icon(Icons.favorite),
-                  Text("Strasbourg, France"),
-                ],
-              ),
-              Row(
-
+              aboutMe(),
+             Row(
                 mainAxisSize: MainAxisSize.max,
                 children: const [
                   Padding(
                     padding: EdgeInsets.only(top: 40, left: 10),
                   ),
                   Text(
-                      "Friends",
+                    "Friends",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
 
@@ -195,33 +172,49 @@ class FirstAppFromZero extends StatelessWidget {
                   ),
                 ],
               ),
+              /////////////////////////////////////////////////////////////////
               Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                      children: [carouselCard(), carouselCard()],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [carouselCard(), carouselCard()],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [carouselCard(), carouselCard()],
+                      children: [carouselCard(), carouselCard(),  carouselCard()],
                   ),
                 ],
               ),
+              myPost(),
+              myPost(),
+              myPost(),
+              myPost(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon.(Icons.home),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.all(12),
+        height: 50.0,
+        color: Colors.grey[200],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const <Widget> [
+            Icon(
+              Icons.home,
+              color: Colors.deepPurple,
 
             ),
-          ],
+            Icon(
+              Icons.search,
+              color: Colors.deepPurple,
+            ),
+            Icon(
+              Icons.add_card,
+              color: Colors.deepPurple,
+            ),
+            Icon(
+              Icons.home,
+              color: Colors.deepPurple,
+            ),
+        ],
+        ),
       ),
     );
   }
@@ -264,13 +257,161 @@ Card carouselCard(){
          ClipRRect(
            borderRadius: BorderRadius.circular(10), // Image border
            child: SizedBox.fromSize(
-             size: const Size.fromRadius(80), // Image radius
+             size: const Size.fromRadius(60), // Image radius
              child: Image.asset('images/woman.jpg', fit: BoxFit.cover),
            ),
          ),
-         const Text("Maya da Cunha"),
+         const Text("Maya"),
        ],
       ),
   );
 }
 
+Column aboutMe(){
+  return Column(
+    mainAxisSize: MainAxisSize.max,
+    children: [
+      Row(
+        children: const [
+          Icon(Icons.home),
+          Text("Strasbourg, France"),
+        ],
+      ),
+      Row(
+        children: const [
+          Icon(Icons.work),
+          Text("Ormaes, France"),
+        ],
+      ),
+      Row(
+        children: const [
+          Icon(Icons.favorite),
+          Text("Game, Music"),
+        ],
+      ),
+    ],
+  );
+}
+
+
+Column myPost(){
+  return Column(
+    children: [
+      padding10Top(),
+      Container(
+        color: Colors.lightBlueAccent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                padding10Top(),
+                Row(
+                  children: [
+                    padding10Left(),
+                    SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: profilePicture(),
+                    ),
+                    padding10Left(),
+                    const Text("Name of the mtfker"),
+                  ],
+                ),
+                padding10Bottom(),
+              ],
+            ),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    const Text("5 hours ago"),
+                    padding10Right(),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      Column(
+        children: [
+          SizedBox(
+            child: Center(
+              child: Image.asset("images/camp.jpeg"),
+            ),
+          ),
+          Container(
+            color: Colors.lightBlueAccent,
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: const [
+                Text(
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ...",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          likeComment(),
+        ],
+      ),
+    ],
+  );
+}
+
+Padding padding10Left(){
+  return const Padding(
+      padding: EdgeInsets.only(left: 10),
+  );
+}
+
+Padding padding10Top(){
+  return const Padding(
+    padding: EdgeInsets.only(top: 10),
+  );
+}
+
+Padding padding10Bottom(){
+  return const Padding(
+    padding: EdgeInsets.only(top: 10),
+  );
+}
+
+Padding padding10Right(){
+  return const Padding(
+    padding: EdgeInsets.only(right: 10),
+  );
+}
+
+Padding padding10All(){
+  return const Padding(
+    padding: EdgeInsets.all(10),
+  );
+}
+
+Container likeComment(){
+  return Container(
+    color: Colors.lightBlueAccent,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children:  [
+        Row(
+          children: const [
+            Icon(Icons.favorite),
+            Text("36 Likes"),
+          ],
+        ),
+        Row(
+          children: const [
+            Icon(Icons.comment),
+            Text("50 Comments"),
+          ],
+        ),
+      ],
+    ),
+  );
+}
