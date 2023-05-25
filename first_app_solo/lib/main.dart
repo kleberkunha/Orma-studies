@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -136,7 +138,6 @@ class FirstAppFromZero extends StatelessWidget {
                     ),
                   ),
                 ],
-
               ),
               /*-------------------------------------------------------------------------------------------------------*/
               //CREATING CARD FROM ZERO
@@ -178,15 +179,49 @@ class FirstAppFromZero extends StatelessWidget {
                   Text("Strasbourg, France"),
                 ],
               ),
+              Row(
+
+                mainAxisSize: MainAxisSize.max,
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.only(top: 40, left: 10),
+                  ),
+                  Text(
+                      "Friends",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+
+                    ),
+                  ),
+                ],
+              ),
               Column(
                 children: [
-                  userCard(),
-                  anotherCard(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                      children: [carouselCard(), carouselCard()],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [carouselCard(), carouselCard()],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [carouselCard(), carouselCard()],
+                  ),
                 ],
               ),
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon.(Icons.home),
+
+            ),
+          ],
       ),
     );
   }
@@ -221,39 +256,21 @@ CircleAvatar profilePicture() {
   );
 }
 
-Card userCard(){
+
+Card carouselCard(){
   return Card(
-    margin: const EdgeInsets.all(10),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    clipBehavior: Clip.antiAliasWithSaveLayer,
-    elevation: 5,
-    child: Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("images/crazy.png"),
-          fit: BoxFit.cover,
-          alignment: Alignment.topCenter,
-        ),
+      child: Column(
+       children: [
+         ClipRRect(
+           borderRadius: BorderRadius.circular(10), // Image border
+           child: SizedBox.fromSize(
+             size: const Size.fromRadius(80), // Image radius
+             child: Image.asset('images/woman.jpg', fit: BoxFit.cover),
+           ),
+         ),
+         const Text("Maya da Cunha"),
+       ],
       ),
-      child: const ListTile(
-        title: Text('Demo Title'),
-        subtitle: Text('This is a simple card in Flutter.'),
-      ),
-    ),
   );
 }
 
-
-Card anotherCard(){
-  return Card(
-    child: Container(
-      height:200,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/nature/nature.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-    ),
-  );
-}
