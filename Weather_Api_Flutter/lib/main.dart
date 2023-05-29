@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.blue),
       //remove the debug tag from the top of the application
       debugShowCheckedModeBanner: false,
-      home: HomeView(),
+      home: const HomeView(),
     );
   }
 }
